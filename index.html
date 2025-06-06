@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manutenção Plus | Serviços de Manutenção Residencial e Empresarial</title>
+    <title>ManutençãoPlus | Soluções Completas para Seu Imóvel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#2563eb',
-                            dark: '#1d4ed8'
+                            DEFAULT: '#2563eb', // Azul vibrante
+                            dark: '#1d4ed8',
+                            light: '#3b82f6'
                         },
                         secondary: {
-                            DEFAULT: '#059669',
-                            dark: '#047857'
+                            DEFAULT: '#059669', // Verde para destaque
+                            dark: '#047857',
+                            light: '#10b981'
                         },
-                        accent: '#f59e0b'
+                        accent: '#f59e0b', // Laranja para acentuação
+                        darkbg: '#1a202c', // Novo: Fundo escuro para seções específicas
+                        graylight: '#f9fafb' // Novo: Cinza bem claro
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'], // Usando Poppins
                     }
                 }
             }
@@ -27,28 +37,35 @@
     </script>
     <style>
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            height: 80vh;
+            height: 90vh; /* Ajustado para um pouco mais alto */
+            display: flex; /* Garante alinhamento vertical */
+            align-items: center; /* Centraliza conteúdo verticalmente */
+            padding-top: 4rem; /* Espaçamento para a nav fixa */
         }
         
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px); /* Mais impacto ao passar o mouse */
+            box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
         }
         
         .testimonial-card {
             transition: all 0.3s ease;
         }
-        
         .testimonial-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
         }
         
         .portfolio-item {
             position: relative;
             overflow: hidden;
+            border-radius: 0.5rem; /* rounded-lg */
         }
         
         .portfolio-overlay {
@@ -64,6 +81,8 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.3s ease;
+            text-align: center; /* Centraliza o texto */
+            padding: 1rem; /* Adiciona padding */
         }
         
         .portfolio-item:hover .portfolio-overlay {
@@ -74,216 +93,247 @@
             position: fixed;
             width: 60px;
             height: 60px;
-            bottom: 40px;
-            right: 40px;
+            bottom: 30px; /* Levemente mais para cima */
+            right: 30px; /* Levemente mais para a esquerda */
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
             text-align: center;
             font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
             z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1); /* Efeito de "pop" */
+        }
+
+        /* Melhoria para a acessibilidade do foco em botões e inputs */
+        input:focus, select:focus, textarea:focus, button:focus, a:focus {
+            outline: 2px solid theme('colors.accent');
+            outline-offset: 2px;
         }
     </style>
 </head>
-<body class="font-sans bg-gray-50">
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/5511999999999?text=Olá%20Manutenção%20Plus,%20gostaria%20de%20solicitar%20um%20orçamento" class="whatsapp-float" target="_blank">
+<body class="font-sans bg-graylight text-gray-800">
+    <a href="https://wa.me/5521999999999?text=Olá%20ManutençãoPlus,%20gostaria%20de%20solicitar%20um%20orçamento%20para%20manutenção." class="whatsapp-float" target="_blank" aria-label="Fale conosco pelo WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
+    <nav class="bg-white shadow-lg fixed w-full z-50">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <span class="ml-3 text-xl font-bold text-primary px-4">Manutenção<span class="text-accent">Plus</span></span>
+                    <a href="#home" class="text-2xl font-extrabold text-primary px-4 py-2 rounded-md hover:opacity-90 transition">Manutenção<span class="text-accent">Plus</span></a>
                 </div>
                 
-                <!-- Mobile menu button -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary focus:outline-none p-2 rounded-md transition duration-200" aria-label="Abrir menu de navegação">
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
                 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-primary font-medium">Início</a>
-                    <a href="#services" class="text-gray-700 hover:text-primary font-medium">Serviços</a>
-                    <a href="#about" class="text-gray-700 hover:text-primary font-medium">Sobre Nós</a>
-                    <a href="#portfolio" class="text-gray-700 hover:text-primary font-medium">Portfólio</a>
-                    <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contato</a>
-                    <a href="#quote" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium transition duration-300">Solicitar Orçamento</a>
+                    <a href="#home" class="text-gray-700 hover:text-primary font-medium transition duration-200">Início</a>
+                    <a href="#services" class="text-gray-700 hover:text-primary font-medium transition duration-200">Serviços</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary font-medium transition duration-200">Sobre Nós</a>
+                    <a href="#portfolio" class="text-gray-700 hover:text-primary font-medium transition duration-200">Portfólio</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary font-medium transition duration-200">Contato</a>
+                    <a href="#quote" class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-semibold shadow-md transition duration-300 transform hover:scale-105">Solicitar Orçamento</a>
                 </div>
             </div>
             
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
-                <a href="#home" class="block px-2 py-1 text-gray-700 hover:text-primary font-medium">Início</a>
-                <a href="#services" class="block px-2 py-1 text-gray-700 hover:text-primary font-medium">Serviços</a>
-                <a href="#about" class="block px-2 py-1 text-gray-700 hover:text-primary font-medium">Sobre Nós</a>
-                <a href="#portfolio" class="block px-2 py-1 text-gray-700 hover:text-primary font-medium">Portfólio</a>
-                <a href="#contact" class="block px-2 py-1 text-gray-700 hover:text-primary font-medium">Contato</a>
-                <a href="#quote" class="block mt-2 bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium text-center transition duration-300">Solicitar Orçamento</a>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2 bg-white rounded-lg shadow-inner">
+                <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary font-medium rounded-md">Início</a>
+                <a href="#services" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary font-medium rounded-md">Serviços</a>
+                <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary font-medium rounded-md">Sobre Nós</a>
+                <a href="#portfolio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary font-medium rounded-md">Portfólio</a>
+                <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary font-medium rounded-md">Contato</a>
+                <a href="#quote" class="block mt-3 mx-4 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-semibold text-center transition duration-300 transform hover:scale-105">Solicitar Orçamento</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    ---
+
     <section id="home" class="hero-section flex items-center">
         <div class="container mx-auto px-4 text-white">
-            <div class="max-w-2xl">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Soluções Completas para Seu Imóvel</h1>
-                <p class="text-lg md:text-xl mb-8">Manutenção e reparos sem dor de cabeça para residências e empresas. Conte com nossa equipe especializada para resolver qualquer problema.</p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#quote" class="bg-accent hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Solicitar Orçamento</a>
-                    <a href="tel:+5511999999999" class="bg-white hover:bg-gray-100 text-primary px-6 py-3 rounded-lg font-medium transition duration-300">Ligar Agora <i class="fas fa-phone ml-2"></i></a>
+            <div class="max-w-3xl text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Sua Manutenção Resolvida.<br class="hidden md:inline"> Sem Dor de Cabeça.</h1>
+                <p class="text-lg md:text-xl mb-8 opacity-90">Manutenção residencial e empresarial com a **qualidade e confiança** que você merece. Conte com nossa equipe especializada para qualquer necessidade.</p>
+                <div class="flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="#quote" class="bg-accent hover:bg-yellow-600 text-white px-7 py-3.5 rounded-lg font-semibold text-lg shadow-lg transition duration-300 transform hover:scale-105">Solicitar Orçamento Grátis</a>
+                    <a href="tel:+5521999999999" class="bg-white hover:bg-gray-100 text-primary px-7 py-3.5 rounded-lg font-semibold text-lg shadow-lg transition duration-300 transform hover:scale-105 inline-flex items-center justify-center">Ligar Agora <i class="fas fa-phone ml-2"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-16 bg-white">
+    ---
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Por que escolher a Manutenção<span class="text-accent">Plus</span>?</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+                Na ManutençãoPlus, combinamos experiência, profissionalismo e um atendimento que realmente se importa com sua necessidade. Veja o que nos torna a melhor escolha:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-sm transition transform hover:scale-105 hover:shadow-md">
+                    <i class="fas fa-handshake text-5xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Confiança e Credibilidade</h3>
+                    <p class="text-gray-600">Mais de 15 anos no mercado, construindo uma reputação sólida e baseada na satisfação do cliente.</p>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-sm transition transform hover:scale-105 hover:shadow-md">
+                    <i class="fas fa-tools text-5xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Equipe Especializada</h3>
+                    <p class="text-gray-600">Técnicos altamente qualificados e experientes em diversas áreas da manutenção.</p>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-sm transition transform hover:scale-105 hover:shadow-md">
+                    <i class="fas fa-shield-alt text-5xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Garantia e Segurança</h3>
+                    <p class="text-gray-600">Todos os nossos serviços são cobertos por garantia, garantindo sua tranquilidade total.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section id="services" class="py-16 bg-graylight">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Nossos Serviços</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Oferecemos soluções completas em manutenção residencial e empresarial com qualidade e garantia.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nossos Serviços Especializados</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Oferecemos **soluções completas** em manutenção residencial e empresarial com a **qualidade e garantia** que você precisa.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow transition duration-300">
-                    <div class="h-40 bg-blue-100 flex items-center justify-center">
-                        <i class="fas fa-bolt text-5xl text-primary"></i>
-                    </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card bg-white rounded-lg shadow-md transition duration-300 border border-gray-100">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Elétrica</h3>
-                        <p class="text-gray-600 mb-4">Instalações, reparos e manutenção elétrica residencial e predial. Substituição de disjuntores, tomadas, interruptores e mais.</p>
-                        <a href="#quote" class="inline-block bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium transition duration-300">Solicitar Orçamento</a>
+                        <div class="flex items-center justify-center h-24 w-24 mx-auto bg-primary-light rounded-full mb-6">
+                            <i class="fas fa-bolt text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2 text-center">Elétrica</h3>
+                        <p class="text-gray-600 mb-5 text-center">Instalações, reparos, manutenção elétrica, disjuntores, tomadas, iluminação e muito mais. Segurança e funcionalidade para sua energia.</p>
+                        <a href="#quote" class="block bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-lg font-medium text-center transition duration-300 transform hover:scale-105">Solicitar Orçamento</a>
                     </div>
                 </div>
                 
-                <!-- Service Card 2 -->
-                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow transition duration-300">
-                    <div class="h-40 bg-blue-100 flex items-center justify-center">
-                        <i class="fas fa-faucet text-5xl text-primary"></i>
-                    </div>
+                <div class="service-card bg-white rounded-lg shadow-md transition duration-300 border border-gray-100">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Hidráulica</h3>
-                        <p class="text-gray-600 mb-4">Reparos em encanamentos, vazamentos, troca de registros, desentupimentos e instalações hidráulicas em geral.</p>
-                        <a href="#quote" class="inline-block bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium transition duration-300">Solicitar Orçamento</a>
+                        <div class="flex items-center justify-center h-24 w-24 mx-auto bg-primary-light rounded-full mb-6">
+                            <i class="fas fa-faucet text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2 text-center">Hidráulica</h3>
+                        <p class="text-gray-600 mb-5 text-center">Reparos em encanamentos, vazamentos, troca de registros, desentupimentos e instalações hidráulicas em geral. Soluções rápidas e eficazes.</p>
+                        <a href="#quote" class="block bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-lg font-medium text-center transition duration-300 transform hover:scale-105">Solicitar Orçamento</a>
                     </div>
                 </div>
                 
-                <!-- Service Card 3 -->
-                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow transition duration-300">
-                    <div class="h-40 bg-blue-100 flex items-center justify-center">
-                        <i class="fas fa-paint-roller text-5xl text-primary"></i>
-                    </div>
+                <div class="service-card bg-white rounded-lg shadow-md transition duration-300 border border-gray-100">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pintura</h3>
-                        <p class="text-gray-600 mb-4">Pintura interna e externa residencial e comercial, impermeabilização, texturas e renovação de fachadas.</p>
-                        <a href="#quote" class="inline-block bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium transition duration-300">Solicitar Orçamento</a>
+                        <div class="flex items-center justify-center h-24 w-24 mx-auto bg-primary-light rounded-full mb-6">
+                            <i class="fas fa-paint-roller text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2 text-center">Pintura</h3>
+                        <p class="text-gray-600 mb-5 text-center">Pintura interna e externa residencial e comercial, impermeabilização, texturas e renovação de fachadas. Cores e vida para seu ambiente.</p>
+                        <a href="#quote" class="block bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-lg font-medium text-center transition duration-300 transform hover:scale-105">Solicitar Orçamento</a>
                     </div>
                 </div>
                 
-                <!-- Service Card 4 -->
-                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow transition duration-300">
-                    <div class="h-40 bg-blue-100 flex items-center justify-center">
-                        <i class="fas fa-hammer text-5xl text-primary"></i>
-                    </div>
+                <div class="service-card bg-white rounded-lg shadow-md transition duration-300 border border-gray-100">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pequenos Reparos</h3>
-                        <p class="text-gray-600 mb-4">Consertos em geral, montagem de móveis, troca de fechaduras, instalação de prateleiras e outros serviços de manutenção.</p>
-                        <a href="#quote" class="inline-block bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium transition duration-300">Solicitar Orçamento</a>
+                        <div class="flex items-center justify-center h-24 w-24 mx-auto bg-primary-light rounded-full mb-6">
+                            <i class="fas fa-screwdriver-wrench text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2 text-center">Pequenos Reparos</h3>
+                        <p class="text-gray-600 mb-5 text-center">Consertos em geral, montagem de móveis, troca de fechaduras, instalação de prateleiras e outros serviços de manutenção do dia a dia.</p>
+                        <a href="#quote" class="block bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-lg font-medium text-center transition duration-300 transform hover:scale-105">Solicitar Orçamento</a>
                     </div>
                 </div>
                 
-                <!-- Service Card 5 -->
-                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow transition duration-300">
-                    <div class="h-40 bg-blue-100 flex items-center justify-center">
-                        <i class="fas fa-leaf text-5xl text-primary"></i>
-                    </div>
+                <div class="service-card bg-white rounded-lg shadow-md transition duration-300 border border-gray-100">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Jardinagem</h3>
-                        <p class="text-gray-600 mb-4">Manutenção de jardins, podas, paisagismo, irrigação e limpeza de áreas verdes residenciais e comerciais.</p>
-                        <a href="#quote" class="inline-block bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium transition duration-300">Solicitar Orçamento</a>
+                        <div class="flex items-center justify-center h-24 w-24 mx-auto bg-primary-light rounded-full mb-6">
+                            <i class="fas fa-seedling text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2 text-center">Jardinagem e Paisagismo</h3>
+                        <p class="text-gray-600 mb-5 text-center">Manutenção de jardins, podas, paisagismo, irrigação e limpeza de áreas verdes para residências e empresas. Seu verde sempre impecável.</p>
+                        <a href="#quote" class="block bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-lg font-medium text-center transition duration-300 transform hover:scale-105">Solicitar Orçamento</a>
                     </div>
                 </div>
                 
-                <!-- Service Card 6 -->
-                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow transition duration-300">
-                    <div class="h-40 bg-blue-100 flex items-center justify-center">
-                        <i class="fas fa-building text-5xl text-primary"></i>
-                    </div>
+                <div class="service-card bg-white rounded-lg shadow-md transition duration-300 border border-gray-100">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Manutenção Empresarial</h3>
-                        <p class="text-gray-600 mb-4">Contratos de manutenção preventiva para empresas, condomínios e estabelecimentos comerciais.</p>
-                        <a href="#quote" class="inline-block bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium transition duration-300">Solicitar Orçamento</a>
+                        <div class="flex items-center justify-center h-24 w-24 mx-auto bg-primary-light rounded-full mb-6">
+                            <i class="fas fa-industry text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2 text-center">Manutenção Empresarial</h3>
+                        <p class="text-gray-600 mb-5 text-center">Contratos de manutenção preventiva para empresas, condomínios e estabelecimentos comerciais. Garanta a continuidade do seu negócio.</p>
+                        <a href="#quote" class="block bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-lg font-medium text-center transition duration-300 transform hover:scale-105">Solicitar Orçamento</a>
                     </div>
                 </div>
             </div>
             
-            <div class="mt-12 text-center">
-                <a href="#quote" class="bg-secondary hover:bg-secondary-dark text-white px-8 py-3 rounded-lg font-medium transition duration-300 inline-flex items-center">
-                    <span>Personalizar Pacote de Serviços</span>
-                    <i class="fas fa-chevron-right ml-2"></i>
+            <div class="mt-16 text-center">
+                <a href="#quote" class="bg-secondary hover:bg-secondary-dark text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition duration-300 transform hover:scale-105 inline-flex items-center">
+                    <span>Não encontrou seu serviço? Fale conosco!</span>
+                    <i class="fas fa-comments ml-3"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-50">
+    ---
+
+    <section id="about" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
-                    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Nossa Equipe" class="rounded-lg shadow-lg w-full">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12">
+                    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Nossa Equipe de ManutençãoPlus" class="rounded-lg shadow-xl w-full">
                 </div>
                 <div class="lg:w-1/2">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Sobre a ManutençãoPlus</h2>
-                    <p class="text-gray-600 mb-6">Há mais de 15 anos oferecendo soluções em manutenção residencial e empresarial, a ManutençãoPlus se destaca pela qualidade dos serviços, profissionais qualificados e atendimento personalizado.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Manutenção<span class="text-accent">Plus</span>: Qualidade e Experiência ao Seu Dispor</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">Com **mais de 15 anos de atuação**, a ManutençãoPlus se consolidou como referência em soluções de manutenção **residencial e empresarial** em Duque de Caxias, Rio de Janeiro, e arredores. Nosso compromisso é com a excelência, a segurança e a satisfação total de cada cliente.</p>
                     
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center">
-                            <i class="fas fa-check-circle text-secondary mr-2"></i>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-check-circle text-secondary text-2xl mr-3"></i>
                             Nossa Missão
                         </h3>
-                        <p class="text-gray-600">Proporcionar soluções em manutenção com excelência, segurança e profissionalismo, transformando problemas em satisfação para nossos clientes.</p>
+                        <p class="text-gray-600 text-lg">Proporcionar soluções em manutenção de alta qualidade, garantindo a funcionalidade e segurança dos imóveis de nossos clientes, com profissionalismo e atendimento humanizado.</p>
                     </div>
                     
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center">
-                            <i class="fas fa-lightbulb text-secondary mr-2"></i>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-lightbulb text-secondary text-2xl mr-3"></i>
                             Nossos Valores
                         </h3>
-                        <ul class="text-gray-600 list-disc pl-5">
-                            <li class="mb-1">Comprometimento com a qualidade</li>
-                            <li class="mb-1">Atendimento humanizado</li>
-                            <li class="mb-1">Transparência nos serviços</li>
-                            <li class="mb-1">Inovação constante</li>
+                        <ul class="text-gray-600 text-lg list-none pl-0 space-y-2">
+                            <li class="flex items-center"><i class="fas fa-chevron-right text-accent text-sm mr-2"></i> **Comprometimento com a Qualidade:** Entregamos resultados que superam expectativas.</li>
+                            <li class="flex items-center"><i class="fas fa-chevron-right text-accent text-sm mr-2"></i> **Atendimento Humanizado:** Cada cliente é único e merece atenção especial.</li>
+                            <li class="flex items-center"><i class="fas fa-chevron-right text-accent text-sm mr-2"></i> **Transparência:** Clareza em todo o processo, do orçamento à execução.</li>
+                            <li class="flex items-center"><i class="fas fa-chevron-right text-accent text-sm mr-2"></i> **Inovação Contínua:** Buscamos as melhores práticas e tecnologias para você.</li>
                         </ul>
                     </div>
                     
-                    <div class="flex flex-wrap gap-4">
-                        <div class="bg-white p-4 rounded-lg shadow text-center flex-1">
-                            <div class="text-3xl font-bold text-primary mb-1">15+</div>
-                            <div class="text-gray-600">Anos de experiência</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
+                        <div class="bg-primary-light text-white p-5 rounded-lg shadow-lg text-center flex-1 transform hover:scale-105 transition">
+                            <div class="text-4xl font-bold mb-1">15+</div>
+                            <div class="text-gray-200 text-md">Anos de Experiência</div>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow text-center flex-1">
-                            <div class="text-3xl font-bold text-primary mb-1">5000+</div>
-                            <div class="text-gray-600">Serviços realizados</div>
+                        <div class="bg-primary-light text-white p-5 rounded-lg shadow-lg text-center flex-1 transform hover:scale-105 transition">
+                            <div class="text-4xl font-bold mb-1">5000+</div>
+                            <div class="text-gray-200 text-md">Serviços Realizados</div>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow text-center flex-1">
-                            <div class="text-3xl font-bold text-primary mb-1">100%</div>
-                            <div class="text-gray-600">Garantia nos serviços</div>
+                        <div class="bg-primary-light text-white p-5 rounded-lg shadow-lg text-center flex-1 transform hover:scale-105 transition">
+                            <div class="text-4xl font-bold mb-1">100%</div>
+                            <div class="text-gray-200 text-md">Garantia nos Serviços</div>
                         </div>
                     </div>
                 </div>
@@ -291,68 +341,78 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-16 bg-white">
+    ---
+
+    <section id="portfolio" class="py-16 bg-graylight">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Nossos Trabalhos</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Conheça alguns dos nossos projetos realizados para residências e empresas.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nossos Projetos de Sucesso</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Conheça a qualidade do nosso trabalho através de projetos reais realizados para clientes satisfeitos.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Portfolio Item 1 -->
-                <div class="portfolio-item rounded-lg overflow-hidden shadow">
-                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Reforma Elétrica" class="w-full h-64 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-white text-xl font-bold mb-2">Reforma Elétrica</h3>
-                        <p class="text-white text-center px-4">Instalação elétrica completa em residência em São Paulo</p>
-                        <a href="#" class="mt-3 bg-white text-primary px-4 py-2 rounded-lg font-medium">Ver Detalhes</a>
+                <div class="portfolio-item group">
+                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Reforma Elétrica em São Paulo" class="w-full h-64 object-cover rounded-lg">
+                    <div class="portfolio-overlay rounded-lg">
+                        <h3 class="text-white text-2xl font-bold mb-2">Reforma Elétrica Completa</h3>
+                        <p class="text-white text-center text-md px-4">Modernização de sistema elétrico residencial em São Paulo, garantindo segurança e eficiência.</p>
+                        <a href="#" class="mt-4 bg-white text-primary px-5 py-2.5 rounded-lg font-semibold transition duration-300 transform hover:scale-105">Ver Detalhes</a>
                     </div>
                 </div>
                 
-                <!-- Portfolio Item 2 -->
-                <div class="portfolio-item rounded-lg overflow-hidden shadow">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Pintura Comercial" class="w-full h-64 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-white text-xl font-bold mb-2">Pintura Comercial</h3>
-                        <p class="text-white text-center px-4">Pintura completa de loja comercial em Campinas</p>
-                        <a href="#" class="mt-3 bg-white text-primary px-4 py-2 rounded-lg font-medium">Ver Detalhes</a>
+                <div class="portfolio-item group">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pintura Comercial em Campinas" class="w-full h-64 object-cover rounded-lg">
+                    <div class="portfolio-overlay rounded-lg">
+                        <h3 class="text-white text-2xl font-bold mb-2">Pintura e Fachada Comercial</h3>
+                        <p class="text-white text-center text-md px-4">Renovação completa da estética de uma loja comercial em Campinas, com cores vibrantes e acabamento impecável.</p>
+                        <a href="#" class="mt-4 bg-white text-primary px-5 py-2.5 rounded-lg font-semibold transition duration-300 transform hover:scale-105">Ver Detalhes</a>
                     </div>
                 </div>
                 
-                <!-- Portfolio Item 3 -->
-                <div class="portfolio-item rounded-lg overflow-hidden shadow">
-                    <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Manutenção Hidráulica" class="w-full h-64 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-white text-xl font-bold mb-2">Manutenção Hidráulica</h3>
-                        <p class="text-white text-center px-4">Reparo em encanamento de condomínio em São Paulo</p>
-                        <a href="#" class="mt-3 bg-white text-primary px-4 py-2 rounded-lg font-medium">Ver Detalhes</a>
+                <div class="portfolio-item group">
+                    <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Manutenção Hidráulica em Condomínio" class="w-full h-64 object-cover rounded-lg">
+                    <div class="portfolio-overlay rounded-lg">
+                        <h3 class="text-white text-2xl font-bold mb-2">Reparo Hidráulico Completo</h3>
+                        <p class="text-white text-center text-md px-4">Solução de vazamento e manutenção preventiva de encanamento em condomínio em São Paulo.</p>
+                        <a href="#" class="mt-4 bg-white text-primary px-5 py-2.5 rounded-lg font-semibold transition duration-300 transform hover:scale-105">Ver Detalhes</a>
                     </div>
                 </div>
-            </div>
+                </div>
             
-            <div class="mt-12 text-center">
-                <a href="#" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg font-medium transition duration-300 inline-flex items-center">
-                    <span>Ver Mais Trabalhos</span>
-                    <i class="fas fa-chevron-right ml-2"></i>
+            <div class="mt-16 text-center">
+                <a href="#" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition duration-300 transform hover:scale-105 inline-flex items-center">
+                    <span>Ver Mais Projetos</span>
+                    <i class="fas fa-arrow-right ml-3"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="py-16 bg-blue-50">
+    ---
+
+    <section class="py-16 bg-primary text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Pronto para dar o próximo passo?</h2>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 opacity-90">Não adie mais seus reparos e manutenções! Entre em contato conosco e receba um orçamento personalizado para sua necessidade.</p>
+            <a href="#quote" class="bg-accent hover:bg-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-xl shadow-lg transition duration-300 transform hover:scale-105 inline-flex items-center">
+                Solicite Seu Orçamento Agora! <i class="fas fa-clipboard-list ml-3"></i>
+            </a>
+        </div>
+    </section>
+
+    ---
+
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">O Que Nossos Clientes Dizem</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Avaliações de clientes que confiaram em nossos serviços.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">O Que Nossos Clientes Satisfeitos Dizem</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">A opinião de quem já confiou na ManutençãoPlus é a nossa maior prova de qualidade.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-graylight p-6 rounded-lg shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
-                        <div class="text-yellow-400">
+                        <div class="text-yellow-500 text-xl">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -360,20 +420,19 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 italic mb-6">"Contratei a ManutençãoPlus para resolver um problema de vazamento na minha casa. O serviço foi rápido, eficiente e o técnico foi muito educado. Recomendo!"</p>
+                    <p class="text-gray-700 italic mb-6 leading-relaxed">"Contratei a ManutençãoPlus para resolver um problema de vazamento na minha casa. O serviço foi **rápido, eficiente e o técnico foi muito educado**. Recomendo demais!"</p>
                     <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Silva" class="w-12 h-12 rounded-full mr-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Silva" class="w-14 h-14 rounded-full mr-4 border-2 border-primary">
                         <div>
-                            <h4 class="font-bold text-gray-800">Maria Silva</h4>
+                            <h4 class="font-bold text-gray-800 text-lg">Maria Silva</h4>
                             <p class="text-gray-600 text-sm">Residencial - São Paulo</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg">
+                <div class="testimonial-card bg-graylight p-6 rounded-lg shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
-                        <div class="text-yellow-400">
+                        <div class="text-yellow-500 text-xl">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -381,20 +440,19 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 italic mb-6">"Excelente trabalho na pintura do nosso escritório. Cumpriram o prazo, o orçamento foi respeitado e a qualidade foi excelente. Contrataremos novamente!"</p>
+                    <p class="text-gray-700 italic mb-6 leading-relaxed">"Excelente trabalho na pintura do nosso escritório. **Cumpriram o prazo, o orçamento foi respeitado e a qualidade foi impecável**. Contrataremos novamente sem dúvidas!"</p>
                     <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João Oliveira" class="w-12 h-12 rounded-full mr-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João Oliveira" class="w-14 h-14 rounded-full mr-4 border-2 border-primary">
                         <div>
-                            <h4 class="font-bold text-gray-800">João Oliveira</h4>
-                            <p class="text-gray-600 text-sm">Comercial - Campinas</p>
+                            <h4 class="font-bold text-gray-800 text-lg">João Oliveira</h4>
+                            <p class="text-gray-600 text-sm">Empresarial - Campinas</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg">
+                <div class="testimonial-card bg-graylight p-6 rounded-lg shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
-                        <div class="text-yellow-400">
+                        <div class="text-yellow-500 text-xl">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -402,11 +460,11 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 italic mb-6">"Temos contrato de manutenção preventiva para nosso condomínio há 2 anos e a ManutençãoPlus sempre foi muito profissional e atenciosa com nossas demandas."</p>
+                    <p class="text-gray-700 italic mb-6 leading-relaxed">"Temos contrato de manutenção preventiva para nosso condomínio há 2 anos. A ManutençãoPlus sempre foi muito **profissional, atenciosa e proativa** com nossas demandas."</p>
                     <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana Costa" class="w-12 h-12 rounded-full mr-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana Costa" class="w-14 h-14 rounded-full mr-4 border-2 border-primary">
                         <div>
-                            <h4 class="font-bold text-gray-800">Ana Costa</h4>
+                            <h4 class="font-bold text-gray-800 text-lg">Ana Costa</h4>
                             <p class="text-gray-600 text-sm">Condomínio - Santos</p>
                         </div>
                     </div>
@@ -415,101 +473,90 @@
         </div>
     </section>
 
-    <!-- Clients Section
-    <section class="py-12 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-8">
-                <h3 class="text-xl font-semibold text-gray-600">Alguns de nossos parceiros</h3>
-            </div>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-                <img src="https://drive.google.com/file/d/1-uznX-FSCwlILptc8_Eh7N7XM-klDdiJ/view?usp=sharing" alt="Empresa A" class="h-12 opacity-70 hover:opacity-100 transition">
-                <img src="https://via.placeholder.com/150x60?text=Empresa+B" alt="Empresa B" class="h-12 opacity-70 hover:opacity-100 transition">
-                <img src="https://via.placeholder.com/150x60?text=Empresa+C" alt="Empresa C" class="h-12 opacity-70 hover:opacity-100 transition">
-                <img src="https://via.placeholder.com/150x60?text=Empresa+D" alt="Empresa D" class="h-12 opacity-70 hover:opacity-100 transition">
-            </div>
-        </div>
-    </section> -->
+    ---
 
-    <!-- Quote Section -->
-    <section id="quote" class="py-16 bg-gray-900 text-white">
+    <section id="quote" class="py-16 bg-darkbg text-white">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl font-bold mb-4">Solicite Seu Orçamento</h2>
-                    <p class="text-gray-300">Preencha o formulário abaixo e nossa equipe entrará em contato em breve para fornecer um orçamento personalizado.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Solicite Seu Orçamento Personalizado</h2>
+                    <p class="text-lg text-gray-300">Preencha o formulário abaixo ou fale conosco pelo WhatsApp para um atendimento rápido e um orçamento sem compromisso.</p>
                 </div>
                 
-                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-gray-800 rounded-lg shadow-xl">
                     <div>
-                        <label for="name" class="block mb-2 font-medium">Nome Completo *</label>
-                        <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary focus:outline-none">
+                        <label for="name" class="block mb-2 font-medium text-gray-200">Nome Completo <span class="text-accent">*</span></label>
+                        <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none placeholder-gray-400" placeholder="Seu nome completo">
                     </div>
                     
                     <div>
-                        <label for="email" class="block mb-2 font-medium">E-mail *</label>
-                        <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary focus:outline-none">
+                        <label for="email" class="block mb-2 font-medium text-gray-200">E-mail <span class="text-accent">*</span></label>
+                        <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none placeholder-gray-400" placeholder="seu.email@exemplo.com">
                     </div>
                     
                     <div>
-                        <label for="phone" class="block mb-2 font-medium">Telefone *</label>
-                        <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary focus:outline-none">
+                        <label for="phone" class="block mb-2 font-medium text-gray-200">Telefone <span class="text-accent">*</span></label>
+                        <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none placeholder-gray-400" placeholder="(DDD) 9XXXX-XXXX">
                     </div>
                     
                     <div>
-                        <label for="service" class="block mb-2 font-medium">Serviço Desejado *</label>
-                        <select id="service" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary focus:outline-none">
+                        <label for="service" class="block mb-2 font-medium text-gray-200">Serviço Desejado <span class="text-accent">*</span></label>
+                        <select id="service" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none">
                             <option value="">Selecione um serviço</option>
-                            <option value="electrical">Serviços Elétricos</option>
-                            <option value="plumbing">Serviços Hidráulicos</option>
-                            <option value="painting">Pintura</option>
-                            <option value="repairs">Pequenos Reparos</option>
-                            <option value="gardening">Jardinagem</option>
-                            <option value="commercial">Manutenção Empresarial</option>
-                            <option value="other">Outros</option>
+                            <option value="Elétrica">Serviços Elétricos</option>
+                            <option value="Hidráulica">Serviços Hidráulicos</option>
+                            <option value="Pintura">Pintura</option>
+                            <option value="Pequenos Reparos">Pequenos Reparos</option>
+                            <option value="Jardinagem">Jardinagem e Paisagismo</option>
+                            <option value="Manutenção Empresarial">Manutenção Empresarial</option>
+                            <option value="Outros">Outros</option>
                         </select>
                     </div>
                     
                     <div class="md:col-span-2">
-                        <label for="property" class="block mb-2 font-medium">Tipo de Imóvel *</label>
+                        <label for="property" class="block mb-2 font-medium text-gray-200">Tipo de Imóvel <span class="text-accent">*</span></label>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                            <label class="flex items-center">
-                                <input type="radio" name="property" value="apartment" class="mr-2"> Apartamento
+                            <label class="flex items-center text-gray-300">
+                                <input type="radio" name="property" value="Apartamento" class="mr-2 text-primary focus:ring-primary"> Apartamento
                             </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="property" value="house" class="mr-2"> Casa
+                            <label class="flex items-center text-gray-300">
+                                <input type="radio" name="property" value="Casa" class="mr-2 text-primary focus:ring-primary"> Casa
                             </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="property" value="commercial" class="mr-2"> Comercial
+                            <label class="flex items-center text-gray-300">
+                                <input type="radio" name="property" value="Comercial" class="mr-2 text-primary focus:ring-primary"> Comercial
                             </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="property" value="condo" class="mr-2"> Condomínio
+                            <label class="flex items-center text-gray-300">
+                                <input type="radio" name="property" value="Condomínio" class="mr-2 text-primary focus:ring-primary"> Condomínio
                             </label>
                         </div>
                     </div>
                     
                     <div class="md:col-span-2">
-                        <label for="message" class="block mb-2 font-medium">Descreva sua Necessidade *</label>
-                        <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary focus:outline-none"></textarea>
+                        <label for="message" class="block mb-2 font-medium text-gray-200">Descreva sua Necessidade <span class="text-accent">*</span></label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none placeholder-gray-400" placeholder="Detalhe o serviço que você precisa..."></textarea>
                     </div>
                     
                     <div class="md:col-span-2">
-                        <label class="block mb-2 font-medium">Anexar Fotos (Opcional)</label>
+                        <label class="block mb-2 font-medium text-gray-200">Anexar Fotos (Opcional)</label>
                         <div class="flex items-center justify-center w-full">
-                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-700">
+                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-600 border-dashed rounded-lg cursor-pointer bg-gray-700 hover:bg-gray-600 transition duration-200">
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <i class="fas fa-cloud-upload-alt text-2xl text-gray-400 mb-2"></i>
-                                    <p class="mb-2 text-sm text-gray-400">Arraste e solte arquivos aqui ou clique para selecionar</p>
-                                    <p class="text-xs text-gray-500">JPG, PNG até 5MB</p>
+                                    <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                                    <p class="mb-2 text-sm text-gray-400">Arraste e solte ou <span class="font-semibold text-primary-light">clique para selecionar</span></p>
+                                    <p class="text-xs text-gray-500">JPG, PNG, PDF (Máx. 5MB por arquivo)</p>
                                 </div>
-                                <input id="dropzone-file" type="file" class="hidden" multiple />
+                                <input id="dropzone-file" type="file" class="hidden" multiple accept="image/jpeg,image/png,application/pdf" />
                             </label>
                         </div> 
+                        <div id="file-list" class="mt-2 text-sm text-gray-300"></div>
                     </div>
                     
-                    <div class="md:col-span-2 flex flex-col sm:flex-row gap-4">
-                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex-1">Enviar Solicitação</button>
-                        <button type="button" onclick="openWhatsApp()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex-1 flex items-center justify-center">
-                            <i class="fab fa-whatsapp mr-2 text-lg"></i>
+                    <div class="md:col-span-2 flex flex-col sm:flex-row gap-4 mt-4">
+                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 flex-1 shadow-md transform hover:scale-105">
+                            Enviar Solicitação de Orçamento
+                        </button>
+                        <button type="button" onclick="openWhatsAppForm()" class="bg-secondary hover:bg-secondary-dark text-white px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 flex-1 flex items-center justify-center shadow-md transform hover:scale-105">
+                            <i class="fab fa-whatsapp mr-2 text-xl"></i>
                             Falar pelo WhatsApp
                         </button>
                     </div>
@@ -518,234 +565,233 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    ---
+
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Perguntas Frequentes</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Tire suas dúvidas sobre nossos serviços e processos.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Dúvidas Frequentes</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Encontre respostas para as perguntas mais comuns sobre nossos serviços.</p>
             </div>
             
             <div class="max-w-3xl mx-auto">
-                <!-- FAQ Item 1 -->
                 <div class="mb-6 border-b border-gray-200 pb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-primary focus:outline-none">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-gray-800 hover:text-primary focus:outline-none text-lg">
                         <span>Como funciona o processo de orçamento?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-primary"></i>
                     </button>
-                    <div class="faq-answer mt-4 text-gray-600 hidden">
-                        <p>Após enviar sua solicitação através do formulário ou WhatsApp, nossa equipe entra em contato para entender melhor suas necessidades. Em muitos casos, precisamos agendar uma visita técnica para avaliar com precisão. Dentro de 24 horas após a visita, enviamos um orçamento detalhado sem compromisso.</p>
+                    <div class="faq-answer mt-4 text-gray-700 hidden text-base leading-relaxed">
+                        <p>Após enviar sua solicitação através do formulário ou WhatsApp, nossa equipe entrará em contato para entender melhor suas necessidades. Para serviços mais complexos, agendamos uma visita técnica para avaliar o local com precisão. Dentro de **24 horas após a visita**, enviamos um orçamento detalhado e **sem compromisso**.</p>
                     </div>
                 </div>
                 
-                <!-- FAQ Item 2 -->
                 <div class="mb-6 border-b border-gray-200 pb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-primary focus:outline-none">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-gray-800 hover:text-primary focus:outline-none text-lg">
                         <span>Quais são as formas de pagamento aceitas?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-primary"></i>
                     </button>
-                    <div class="faq-answer mt-4 text-gray-600 hidden">
-                        <p>Aceitamos diversas formas de pagamento para sua conveniência: dinheiro, PIX, cartões de débito e crédito (em até 12x com taxas), transferência bancária e boletos. Para contratos de manutenção empresarial, também oferecemos cobrança mensal via fatura.</p>
+                    <div class="faq-answer mt-4 text-gray-700 hidden text-base leading-relaxed">
+                        <p>Aceitamos diversas formas de pagamento para sua conveniência: **PIX, cartões de débito e crédito (em até 12x com taxas)**, transferência bancária e boleto (para empresas e contratos). Para contratos de manutenção empresarial, também oferecemos cobrança mensal via fatura.</p>
                     </div>
                 </div>
                 
-                <!-- FAQ Item 3 -->
                 <div class="mb-6 border-b border-gray-200 pb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-primary focus:outline-none">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-gray-800 hover:text-primary focus:outline-none text-lg">
                         <span>Vocês oferecem garantia para os serviços?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-primary"></i>
                     </button>
-                    <div class="faq-answer mt-4 text-gray-600 hidden">
-                        <p>Sim, todos os nossos serviços têm garantia. O período de garantia varia conforme o tipo de serviço prestado (geralmente entre 90 dias a 1 ano). Todas as informações sobre garantia são detalhadas no contrato de prestação de serviço que é enviado junto com o orçamento.</p>
+                    <div class="faq-answer mt-4 text-gray-700 hidden text-base leading-relaxed">
+                        <p>Sim, todos os nossos serviços têm **garantia total**. O período de garantia varia conforme o tipo de serviço prestado e as peças utilizadas (geralmente entre 90 dias a 1 ano, conforme o Código de Defesa do Consumidor). Todas as informações sobre garantia são detalhadas no seu contrato de prestação de serviço.</p>
                     </div>
                 </div>
                 
-                <!-- FAQ Item 4 -->
                 <div class="mb-6 border-b border-gray-200 pb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-primary focus:outline-none">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-gray-800 hover:text-primary focus:outline-none text-lg">
                         <span>Em quais regiões vocês atendem?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-primary"></i>
                     </button>
-                    <div class="faq-answer mt-4 text-gray-600 hidden">
-                        <p>Atendemos toda a Grande São Paulo, Campinas, Santos e região. Para outras localidades, consulte nossa equipe sobre possibilidade de atendimento e eventuais custos adicionais de deslocamento.</p>
+                    <div class="faq-answer mt-4 text-gray-700 hidden text-base leading-relaxed">
+                        <p>Atendemos prioritariamente toda a região de **Duque de Caxias e Baixada Fluminense**, no Rio de Janeiro. Para outras localidades na Grande Rio, por favor, consulte nossa equipe sobre a possibilidade de atendimento e eventuais custos adicionais de deslocamento.</p>
                     </div>
                 </div>
                 
-                <!-- FAQ Item 5 -->
                 <div class="mb-6 border-b border-gray-200 pb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-primary focus:outline-none">
-                        <span>Quanto tempo em média demora para o atendimento?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-gray-800 hover:text-primary focus:outline-none text-lg">
+                        <span>Qual o tempo médio para o atendimento?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-primary"></i>
                     </button>
-                    <div class="faq-answer mt-4 text-gray-600 hidden">
-                        <p>Para emergências (como vazamentos ou problemas elétricos graves), fazemos atendimento no mesmo dia ou em até 24 horas. Para serviços não urgentes, o agendamento depende da nossa agenda, mas normalmente conseguimos atender em até 3 dias úteis após a aprovação do orçamento.</p>
+                    <div class="faq-answer mt-4 text-gray-700 hidden text-base leading-relaxed">
+                        <p>Para **emergências** (como vazamentos ou problemas elétricos graves), fazemos atendimento no **mesmo dia ou em até 24 horas**. Para serviços não urgentes, o agendamento depende da nossa agenda, mas normalmente conseguimos atender em até **3 dias úteis** após a aprovação do orçamento.</p>
                     </div>
                 </div>
                 
-                <!-- FAQ Item 6 -->
                 <div class="mb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-primary focus:outline-none">
-                        <span>Vocês fazem serviços aos finais de semana?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-gray-800 hover:text-primary focus:outline-none text-lg">
+                        <span>Vocês realizam serviços aos finais de semana e feriados?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-primary"></i>
                     </button>
-                    <div class="faq-answer mt-4 text-gray-600 hidden">
-                        <p>Sim, realizamos serviços aos sábados mediante agendamento prévio. Domingos e feriados são reservados apenas para atendimentos emergenciais, com acréscimo no valor do serviço conforme nossa tabela de plantão.</p>
+                    <div class="faq-answer mt-4 text-gray-700 hidden text-base leading-relaxed">
+                        <p>Sim, realizamos serviços aos **sábados mediante agendamento prévio**. Domingos e feriados são reservados apenas para atendimentos emergenciais, com acréscimo no valor do serviço conforme nossa tabela de plantão.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-50">
+    ---
+
+    <section id="contact" class="py-16 bg-graylight">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row">
+            <div class="flex flex-col lg:flex-row gap-12">
                 <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Entre em Contato</h2>
-                    <p class="text-gray-600 mb-8">Estamos à disposição para tirar dúvidas, receber sugestões e agendar serviços. Utilize os canais abaixo ou preencha o formulário ao lado.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Fale Conosco</h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">Estamos à disposição para tirar suas dúvidas, receber sugestões e agendar serviços. Utilize os canais abaixo ou preencha o formulário ao lado.</p>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-7">
                         <div class="flex items-start">
-                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                <i class="fas fa-map-marker-alt text-primary text-xl"></i>
+                            <div class="bg-primary bg-opacity-10 p-4 rounded-full mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary text-2xl"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800 mb-1">Endereço</h4>
-                                <p class="text-gray-600">Rua Exemplo, 123 - Centro<br>São Paulo/SP - CEP: 01000-000</p>
+                                <h4 class="font-bold text-gray-800 text-xl mb-1">Endereço</h4>
+                                <p class="text-gray-700 text-lg">Rua Exemplo, 123 - Centro<br>Duque de Caxias/RJ - CEP: 25000-000</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                <i class="fas fa-phone-alt text-primary text-xl"></i>
+                            <div class="bg-primary bg-opacity-10 p-4 rounded-full mr-4 flex-shrink-0">
+                                <i class="fas fa-phone-alt text-primary text-2xl"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800 mb-1">Telefones</h4>
-                                <p class="text-gray-600">(11) 9999-9999<br>(11) 4000-0000</p>
+                                <h4 class="font-bold text-gray-800 text-xl mb-1">Telefones</h4>
+                                <p class="text-gray-700 text-lg"><a href="tel:+5521999999999" class="hover:text-primary transition">(21) 99999-9999</a> (WhatsApp)<br><a href="tel:+552140000000" class="hover:text-primary transition">(21) 4000-0000</a></p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                <i class="fas fa-envelope text-primary text-xl"></i>
+                            <div class="bg-primary bg-opacity-10 p-4 rounded-full mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope text-primary text-2xl"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800 mb-1">E-mail</h4>
-                                <p class="text-gray-600">contato@manutencaoplus.com.br</p>
+                                <h4 class="font-bold text-gray-800 text-xl mb-1">E-mail</h4>
+                                <p class="text-gray-700 text-lg"><a href="mailto:contato@manutencaoplus.com.br" class="hover:text-primary transition">contato@manutencaoplus.com.br</a></p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                <i class="fas fa-clock text-primary text-xl"></i>
+                            <div class="bg-primary bg-opacity-10 p-4 rounded-full mr-4 flex-shrink-0">
+                                <i class="fas fa-clock text-primary text-2xl"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800 mb-1">Horário de Atendimento</h4>
-                                <p class="text-gray-600">Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p>
+                                <h4 class="font-bold text-gray-800 text-xl mb-1">Horário de Atendimento</h4>
+                                <p class="text-gray-700 text-lg">Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="mt-8">
-                        <h4 class="font-bold text-gray-800 mb-4">Nossas Redes Sociais</h4>
+                    <div class="mt-12">
+                        <h4 class="font-bold text-gray-800 text-2xl mb-5">Conecte-se Conosco</h4>
                         <div class="flex space-x-4">
-                            <a href="#" class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800 transition">
-                                <i class="fab fa-facebook-f"></i>
+                            <a href="#" class="bg-blue-700 text-white p-4 rounded-full hover:bg-blue-800 transition transform hover:scale-110" aria-label="Nossa página no Facebook">
+                                <i class="fab fa-facebook-f text-lg"></i>
                             </a>
-                            <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition">
-                                <i class="fab fa-twitter"></i>
+                            <a href="#" class="bg-pink-600 text-white p-4 rounded-full hover:bg-pink-700 transition transform hover:scale-110" aria-label="Nosso perfil no Instagram">
+                                <i class="fab fa-instagram text-lg"></i>
                             </a>
-                            <a href="#" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition">
-                                <i class="fab fa-instagram"></i>
+                            <a href="#" class="bg-blue-600 text-white p-4 rounded-full hover:bg-blue-700 transition transform hover:scale-110" aria-label="Nosso perfil no LinkedIn">
+                                <i class="fab fa-linkedin-in text-lg"></i>
                             </a>
-                            <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
-                                <i class="fab fa-linkedin-in"></i>
+                            <a href="#" class="bg-red-600 text-white p-4 rounded-full hover:bg-red-700 transition transform hover:scale-110" aria-label="Nosso canal no YouTube">
+                                <i class="fab fa-youtube text-lg"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="lg:w-1/2">
-                    <form class="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Envie uma Mensagem</h3>
+                    <form class="bg-white p-8 rounded-lg shadow-xl border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Envie uma Mensagem Direta</h3>
                         
                         <div class="mb-4">
-                            <label for="contact-name" class="block mb-2 font-medium text-gray-700">Nome *</label>
-                            <input type="text" id="contact-name" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:outline-none">
+                            <label for="contact-name" class="block mb-2 font-medium text-gray-700">Nome <span class="text-accent">*</span></label>
+                            <input type="text" id="contact-name" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none" placeholder="Seu nome">
                         </div>
                         
                         <div class="mb-4">
-                            <label for="contact-email" class="block mb-2 font-medium text-gray-700">E-mail *</label>
-                            <input type="email" id="contact-email" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:outline-none">
+                            <label for="contact-email" class="block mb-2 font-medium text-gray-700">E-mail <span class="text-accent">*</span></label>
+                            <input type="email" id="contact-email" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none" placeholder="seu.email@exemplo.com">
                         </div>
                         
                         <div class="mb-4">
-                            <label for="contact-subject" class="block mb-2 font-medium text-gray-700">Assunto *</label>
-                            <input type="text" id="contact-subject" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:outline-none">
+                            <label for="contact-subject" class="block mb-2 font-medium text-gray-700">Assunto <span class="text-accent">*</span></label>
+                            <input type="text" id="contact-subject" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none" placeholder="Ex: Dúvida sobre serviço, Parceria...">
                         </div>
                         
                         <div class="mb-6">
-                            <label for="contact-message" class="block mb-2 font-medium text-gray-700">Mensagem *</label>
-                            <textarea id="contact-message" rows="4" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:outline-none"></textarea>
+                            <label for="contact-message" class="block mb-2 font-medium text-gray-700">Mensagem <span class="text-accent">*</span></label>
+                            <textarea id="contact-message" rows="5" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none" placeholder="Descreva sua mensagem..."></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white py-3 rounded-lg font-medium transition duration-300">Enviar Mensagem</button>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white py-3.5 rounded-lg font-semibold text-lg transition duration-300 shadow-md transform hover:scale-105">
+                            Enviar Mensagem
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    ---
+
     <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <div class="flex items-center mb-4">
-                        <span class="text-xl font-bold text-primary ">Manutenção<span class="text-accent">Plus</span></span>
-                    </div>
-                    <p class="text-gray-400 mb-4">Soluções completas em manutenção residencial e empresarial com qualidade e garantia.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    <a href="#home" class="flex items-center mb-4 text-2xl font-extrabold text-primary hover:opacity-90 transition">Manutenção<span class="text-accent">Plus</span></a>
+                    <p class="text-gray-400 mb-4 text-sm leading-relaxed">Soluções completas em manutenção residencial e empresarial com qualidade, garantia e atendimento personalizado na Baixada Fluminense.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110" aria-label="Facebook"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110" aria-label="Instagram"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110" aria-label="YouTube"><i class="fab fa-youtube text-lg"></i></a>
                     </div>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Serviços</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Elétrica</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Hidráulica</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Pintura</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Pequenos Reparos</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Manutenção Empresarial</a></li>
+                    <h4 class="text-xl font-bold mb-5 text-gray-100">Nossos Serviços</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition text-base">Elétrica</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition text-base">Hidráulica</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition text-base">Pintura</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition text-base">Pequenos Reparos</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition text-base">Jardinagem e Paisagismo</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition text-base">Manutenção Empresarial</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Links Úteis</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Início</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Serviços</a></li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition">Sobre Nós</a></li>
-                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition">Portfólio</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                    <h4 class="text-xl font-bold mb-5 text-gray-100">Links Úteis</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition text-base">Início</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition text-base">Sobre Nós</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition text-base">Portfólio</a></li>
+                        <li><a href="#quote" class="text-gray-400 hover:text-white transition text-base">Solicitar Orçamento</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition text-base">Dúvidas Frequentes</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition text-base">Contato</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
-                    <p class="text-gray-400 mb-4">Assine nossa newsletter para receber dicas e promoções.</p>
+                    <h4 class="text-xl font-bold mb-5 text-gray-100">Receba Novidades</h4>
+                    <p class="text-gray-400 mb-4 text-base">Assine nossa newsletter para receber dicas valiosas e promoções exclusivas.</p>
                     <form class="flex">
-                        <input type="email" placeholder="Seu e-mail" class="px-4 py-2 rounded-l-lg bg-gray-800 text-white focus:outline-none w-full">
-                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-r-lg">
-                            <i class="fas fa-paper-plane"></i>
+                        <input type="email" placeholder="Seu melhor e-mail" class="px-4 py-2.5 rounded-l-lg bg-gray-800 text-white focus:outline-none w-full border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary" required>
+                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-r-lg flex items-center justify-center transition duration-300 transform hover:scale-105">
+                            <i class="fas fa-paper-plane text-lg"></i>
                         </button>
                     </form>
-                    <div class="mt-4">
-                        <a href="https://wa.me/5511999999999?text=Olá%20Manutenção%20Plus,%20gostaria%20de%20solicitar%20um%20orçamento" class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">
+                    <div class="mt-6">
+                        <a href="https://wa.me/5521999999999?text=Olá%20ManutençãoPlus,%20gostaria%20de%20solicitar%20um%20orçamento%20para%20manutenção." class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg font-semibold text-lg shadow-md transition duration-300 transform hover:scale-105">
                             <i class="fab fa-whatsapp mr-2"></i>
                             Fale no WhatsApp
                         </a>
@@ -753,11 +799,12 @@
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <div class="text-gray-400 mb-4 md:mb-0">
-                    <p>© 2023 ManutençãoPlus. Todos os direitos reservados.</p>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <div class="text-gray-400 mb-4 md:mb-0 text-sm">
+                    <p>&copy; 2023 ManutençãoPlus. Todos os direitos reservados.</p>
+                    <p>Feito com <i class="fas fa-heart text-red-500 mx-1"></i> por [Seu Nome/Nome da Agência]</p>
                 </div>
-                <div class="flex space-x-6">
+                <div class="flex flex-wrap justify-center md:justify-start space-x-6 text-sm">
                     <a href="#" class="text-gray-400 hover:text-white transition">Termos de Serviço</a>
                     <a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidade</a>
                 </div>
@@ -779,7 +826,19 @@
                 const answer = question.nextElementSibling;
                 const icon = question.querySelector('i');
                 
-                // Toggle answer
+                // Close other open FAQs
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question) {
+                        const otherAnswer = otherQuestion.nextElementSibling;
+                        const otherIcon = otherQuestion.querySelector('i');
+                        if (!otherAnswer.classList.contains('hidden')) {
+                            otherAnswer.classList.add('hidden');
+                            otherIcon.style.transform = 'rotate(0deg)';
+                        }
+                    }
+                });
+
+                // Toggle current answer
                 answer.classList.toggle('hidden');
                 
                 // Rotate icon
@@ -788,30 +847,52 @@
                 } else {
                     icon.style.transform = 'rotate(180deg)';
                 }
-                
-                // Close other open FAQs
-                faqQuestions.forEach(otherQuestion => {
-                    if (otherQuestion !== question) {
-                        otherQuestion.nextElementSibling.classList.add('hidden');
-                        otherQuestion.querySelector('i').style.transform = 'rotate(0deg)';
-                    }
-                });
             });
         });
         
-        // WhatsApp function
-        function openWhatsApp() {
+        // WhatsApp function for main floating button
+        document.querySelector('.whatsapp-float').addEventListener('click', function(e) {
+            e.preventDefault();
+            const message = "Olá ManutençãoPlus, gostaria de solicitar um orçamento para manutenção.";
+            window.open(`https://wa.me/5521999999999?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        // WhatsApp function for form button
+        function openWhatsAppForm() {
             const name = document.getElementById('name').value;
-            const service = document.getElementById('service').value;
-            const serviceText = document.querySelector(`#service option[value="${service}"]`).textContent;
+            const serviceElement = document.getElementById('service');
+            const serviceText = serviceElement.options[serviceElement.selectedIndex].textContent;
+            const propertyElements = document.querySelectorAll('input[name="property"]:checked');
+            const propertyText = propertyElements.length > 0 ? propertyElements[0].value : '';
+            const messageInput = document.getElementById('message').value;
             
-            let message = "Olá ManutençãoPlus!";
-            if (name) message += ` Meu nome é ${name}.`;
-            if (service) message += ` Gostaria de informações sobre o serviço de ${serviceText}.`;
+            let whatsappMessage = "Olá ManutençãoPlus!";
+            if (name) whatsappMessage += ` Meu nome é ${name}.`;
+            if (serviceText && serviceText !== "Selecione um serviço") whatsappMessage += ` Tenho interesse no serviço de *${serviceText}*.`;
+            if (propertyText) whatsappMessage += ` O imóvel é do tipo *${propertyText}*.`;
+            if (messageInput) whatsappMessage += `\nMinha necessidade é: ${messageInput}.`;
+            whatsappMessage += `\nPor favor, entre em contato para mais detalhes.`;
             
-            window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(message)}`, '_blank');
+            window.open(`https://wa.me/5521999999999?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
         }
         
+        // Handle file input for quote form
+        const dropzoneFile = document.getElementById('dropzone-file');
+        const fileList = document.getElementById('file-list');
+        dropzoneFile.addEventListener('change', function() {
+            fileList.innerHTML = ''; // Clear previous list
+            if (this.files.length > 0) {
+                for (let i = 0; i < this.files.length; i++) {
+                    const file = this.files[i];
+                    const fileName = file.name;
+                    const fileSize = (file.size / 1024 / 1024).toFixed(2); // MB
+                    fileList.innerHTML += `<p class="text-xs text-gray-400"><i class="fas fa-file-alt mr-1"></i> ${fileName} (${fileSize} MB)</p>`;
+                }
+            } else {
+                fileList.innerHTML = '<p class="text-xs text-gray-400">Nenhum arquivo selecionado.</p>';
+            }
+        });
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -822,7 +903,14 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({
+                    const offset = document.querySelector('nav').offsetHeight; // Get height of fixed nav
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = targetElement.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
                         behavior: 'smooth'
                     });
                     
